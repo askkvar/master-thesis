@@ -19,8 +19,8 @@ df_train = df_train[['tweets', 'class']]
 df_test = df_test[['tweets', 'class']]
 
 # Filter to keep only "regular" and "sarcastic" tweets
-df_train = df_train[df_train['class'].isin(['regular', 'sarcastic'])]
-df_test = df_test[df_test['class'].isin(['regular', 'sarcastic'])]
+df_train = df_train[df_train['class'].isin(['regular', 'sarcasm'])]
+df_test = df_test[df_test['class'].isin(['regular', 'sarcasm'])]
 
 # Define preprocessing function
 def clean_text(text):
