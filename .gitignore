@@ -1,11 +1,5 @@
 # Ignore data files
-/data/processed/processed_movie_reviews.pkl
-/data/processed/processed_movie_reviews.pkl.gz
-/data/processed/processed_twitter_train.pkl
-/data/processed/processed_twitter_test.pkl
-/data/processed/processed_twitter_train.pkl.gz
-/data/processed/processed_twitter_test.pkl.gz
-/data/raw/*
+/data/*
 
 # Ignore virtual environment
 venv/

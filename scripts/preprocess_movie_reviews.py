@@ -34,16 +34,20 @@ df['clean_text'] = df['review'].apply(clean_text)
 
 # Tokenize text using BERT tokenizer
 def tokenize_text(text):
-    return tokenizer(
+    encoded = tokenizer(
         text,
         padding="max_length",
         truncation=True,
         max_length=512,
         return_tensors="pt"
     )
+    return {
+        "input_ids": encoded["input_ids"].squeeze().tolist(),  # Keep only input_ids
+        "attention_mask": encoded["attention_mask"].squeeze().tolist()  # Keep only attention_mask
+    }
 
 # Apply tokenization
-df['tokens'] = df['clean_text'].apply(tokenize_text)
+df["tokens"] = df["clean_text"].apply(tokenize_text)
 
 # Save processed dataset
 df.to_pickle("data/processed/processed_movie_reviews.pkl")  # Save as a pickle file for later use

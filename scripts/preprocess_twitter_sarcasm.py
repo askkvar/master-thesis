@@ -39,13 +39,17 @@ df_test['clean_text'] = df_test['tweets'].apply(clean_text)
 
 # Tokenize text using BERT tokenizer
 def tokenize_text(text):
-    return tokenizer(
+    encoded = tokenizer(
         text,
         padding="max_length",
         truncation=True,
         max_length=128,  # Twitter data is short
         return_tensors="pt"
     )
+    return {
+        "input_ids": encoded["input_ids"].squeeze().tolist(),  # Keep only input_ids
+        "attention_mask": encoded["attention_mask"].squeeze().tolist()  # Keep only attention_mask
+    }
 
 # Apply tokenization
 df_train['tokens'] = df_train['clean_text'].apply(tokenize_text)
