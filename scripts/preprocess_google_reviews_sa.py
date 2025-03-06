@@ -19,11 +19,10 @@ csv_files = glob.glob(os.path.join(input_folder, "google_*.csv"))
 def clean_text(text):
     if pd.isna(text):
         return ""
-    text = re.sub(r"<br\s*/?>", " ", text)  # Remove HTML line breaks
-    text = re.sub(r"http\S+|www.\S+", "", text)  # Remove URLs
-    text = re.sub(r"[^a-zA-Z0-9.,!?']+", " ", text)  # Keep words, numbers, punctuation
-    text = re.sub(r"\s+", " ", text).strip()  # Remove extra spaces
-    text = re.sub(r"([.!?]){2,}", r"\1", text)  # Normalize repeated punctuation
+    text = re.sub(r"<br\s*/?>", " ", text)
+    text = re.sub(r"http\S+|www.\S+", "", text)
+    text = re.sub(r"@\w+", "", text)
+    text = re.sub(r"\s+", " ", text).strip()
     return text
 
 # Function to select the appropriate review text: if non-English and a translated text exists, use it.
