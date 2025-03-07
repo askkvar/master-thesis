@@ -21,7 +21,6 @@ def clean_text(text):
     if pd.isna(text):  # Handle missing values
         return ""
     
-    text = text.lower()  # Convert to lowercase
     text = re.sub(r"<br\s*/?>", " ", text)  # Remove HTML line breaks
     text = re.sub(r"http\S+|www.\S+", "", text)  # Remove URLs
     text = re.sub(r"[^a-zA-Z0-9.,!?']+", " ", text)  # Keep words, numbers, punctuation
