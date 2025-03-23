@@ -27,6 +27,7 @@ __pycache__/
 # Ignore model outputs and checkpoints
 notebooks/outputs/
 notebooks/outputs2/
+notebooks/outputs3/
 
 # Ignore large csv data files (if applicable)
 data/raw/*.csv
