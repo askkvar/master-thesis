@@ -19,7 +19,7 @@ def tokenize_text(text):
     }
 
 # Load the Excel file (assumes it has columns 'clean_text' and 'manual_classification')
-df = pd.read_excel("data/processed/bunker_test_for_manual_annotation.xlsx")
+df = pd.read_excel("data/processed/bunker_test_for_manual_annotation2.xlsx")
 
 # Tokenize the 'clean_text' column and add as a new column 'tokens'
 df["tokens"] = df["clean_text"].apply(tokenize_text)
@@ -28,6 +28,6 @@ df["tokens"] = df["clean_text"].apply(tokenize_text)
 print(df.head())
 
 # Save the DataFrame as a pickle file for later use
-output_pickle = "data/processed/bunker_test_set_tokenized.pkl"
+output_pickle = "data/processed/bunker_test_set_tokenized2.pkl"
 df.to_pickle(output_pickle)
 print(f"Tokenized test set saved to {output_pickle}")
