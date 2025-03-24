@@ -28,6 +28,7 @@ __pycache__/
 notebooks/outputs/
 notebooks/outputs2/
 notebooks/outputs3/
+notebooks/outputs_bunker_finetuned
 
 # Ignore large csv data files (if applicable)
 data/raw/*.csv
