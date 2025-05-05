@@ -57,6 +57,10 @@ for file in csv_files:
     df = pd.read_csv(file)
     
     if "text" in df.columns:
+
+        bunker_name = os.path.basename(file).replace("google_", "").replace(".csv", "")
+        df["bunker_name"] = bunker_name
+    
         # Create the 'review' column using the appropriate text (translated if needed)
         df["review"] = df.apply(select_review_text, axis=1)
         
@@ -70,7 +74,7 @@ for file in csv_files:
         df["tokens"] = df["clean_text"].apply(tokenize_text)
         
         # Keep only the columns that match the training dataset format: review, clean_text, tokens.
-        all_reviews.append(df[["review", "clean_text", "tokens"]])
+        all_reviews.append(df[["bunker_name", "review", "clean_text", "tokens"]])
 
 if all_reviews:
     final_df = pd.concat(all_reviews, ignore_index=True)
