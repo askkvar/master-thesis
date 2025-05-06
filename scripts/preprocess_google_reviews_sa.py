@@ -73,8 +73,11 @@ for file in csv_files:
         # Tokenize the cleaned text
         df["tokens"] = df["clean_text"].apply(tokenize_text)
         
-        # Keep only the columns that match the training dataset format: review, clean_text, tokens.
-        all_reviews.append(df[["bunker_name", "review", "clean_text", "tokens"]])
+        # Keep relevant columns, including stars if it exists
+        if "stars" in df.columns:
+            all_reviews.append(df[["bunker_name", "stars", "review", "clean_text", "tokens"]])
+        else:
+            print(f"Warning: 'stars' column missing in file {file}. Skipping.")
 
 if all_reviews:
     final_df = pd.concat(all_reviews, ignore_index=True)
