@@ -31,6 +31,9 @@ notebooks/outputs3/
 notebooks/outputs_bunker_finetuned/
 notebooks/outputs5/
 notebooks/outputs5_finetuned/
+notebooks/outputs_final/
+notebooks/outputs_uncased/
+notebooks/outputs_cased/
 
 # Ignore large csv data files (if applicable)
 data/raw/*.csv
