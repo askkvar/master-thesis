@@ -1,3 +1,4 @@
+import numpy as np
 import pandas as pd
 import re
 import glob
@@ -72,12 +73,17 @@ for file in csv_files:
         
         # Tokenize the cleaned text
         df["tokens"] = df["clean_text"].apply(tokenize_text)
-        
-        # Keep relevant columns, including stars if it exists
-        if "stars" in df.columns:
-            all_reviews.append(df[["bunker_name", "stars", "review", "clean_text", "tokens"]])
+
+        # Extract year from publishedAtDate
+        if "publishedAtDate" in df.columns:
+            df["year"] = pd.to_datetime(df["publishedAtDate"], errors='coerce').dt.year
         else:
-            print(f"Warning: 'stars' column missing in file {file}. Skipping.")
+            df["year"] = np.nan  # Fill with NaN if not available
+
+        # Keep relevant columns
+        if "stars" in df.columns:
+            all_reviews.append(df[["bunker_name", "stars", "year", "review", "clean_text", "tokens"]])
+
 
 if all_reviews:
     final_df = pd.concat(all_reviews, ignore_index=True)

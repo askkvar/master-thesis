@@ -3,7 +3,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Load your dataset
-df = pd.read_csv("data/processed/processed_movie_reviews.csv")
+df = pd.read_csv("data/processed/processed_bunker_sentiment.csv")
+
+# Convert publishedAtDate to datetime and extract year
+df['year'] = pd.to_datetime(df['publishedAtDate'], errors='coerce').dt.year
+
 
 # Focus on the 'review' column and drop any NaNs
 reviews = df['review'].dropna()
